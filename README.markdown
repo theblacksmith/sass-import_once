@@ -1,6 +1,6 @@
 # Sass Import Once Plugin
 
-Sass import_once changes the behaviour of the sass @import directive making never require the same file twice.
+Sass import_once changes the behavior of the sass @import directive making it never require the same file twice.
 
 ## Installation
 
@@ -12,9 +12,12 @@ Sass import_once changes the behaviour of the sass @import directive making neve
 
 ## Use with compass
 
-Add the following to your compass configuration:
+Install the [compass-import_once](https://www.github.com/theblacksmith/compass-import_once)
 
     $ gem install 'compass-import_once'
+
+Add the following to your compass configuration:
+
     require 'compass-import_once'
 
 ## Stylesheet Syntax
