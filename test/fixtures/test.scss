@@ -1,0 +1,13 @@
+// Let's import a file
+@import "partials/imported";
+
+// add some rules
+$blue: #3bbfce;
+
+div.bleue {
+	background-color: $blue;
+}
+
+// And import the same file again
+// even if we change the way we reference the file, it shouldn't be imported
+@import "partials/imported.scss";
