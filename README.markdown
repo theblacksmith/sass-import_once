@@ -14,7 +14,8 @@ Sass import_once changes the behaviour of the sass @import directive making neve
 
 Add the following to your compass configuration:
 
-    require 'sass-import_once'
+    $ gem install 'compass-import_once'
+    require 'compass-import_once'
 
 ## Stylesheet Syntax
 

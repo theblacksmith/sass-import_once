@@ -2,6 +2,8 @@ class Sass::ImportOnce::Importer < ::Sass::Importers::Filesystem
     
     attr_accessor :root, :staleness_check, :imported, :original_filename
 
+    @@DEBUG = false
+
     # Creates a new filesystem importer that imports files relative to a given path.
     #
     # @param root [String] The root path.
@@ -23,8 +25,6 @@ class Sass::ImportOnce::Importer < ::Sass::Importers::Filesystem
         return str if ENV["TERM"].nil? || ENV["TERM"].empty? || !STDOUT.tty?
         return "\e[#{COLORS[color]}m#{str}\e[0m"
     end
-
-    @@DEBUG = false
     
     def self.DEBUG=(value)
         @@DEBUG = value
