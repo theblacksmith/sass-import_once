@@ -1,3 +1,5 @@
+require 'sass'
+
 class Sass::ImportOnce::Importer < ::Sass::Importers::Filesystem
     
     attr_accessor :root, :staleness_check, :imported, :original_filename
