@@ -14,19 +14,6 @@ class Sass::ImportOnce::Importer < ::Sass::Importers::Filesystem
         @imported = []
         super(root)
     end
-
-    # Same as Sass
-    COLORS = { :red => 31, :green => 32, :yellow => 33 }
-
-    def color(color, str)
-        raise "[BUG] Unrecognized color #{color}" unless COLORS[color]
-
-        # Almost any real Unix terminal will support color,
-        # so we just filter for Windows terms (which don't set TERM)
-        # and not-real terminals, which aren't ttys.
-        return str if ENV["TERM"].nil? || ENV["TERM"].empty? || !STDOUT.tty?
-        return "\e[#{COLORS[color]}m#{str}\e[0m"
-    end
     
     def self.DEBUG=(value)
         @@DEBUG = value
@@ -71,7 +58,7 @@ class Sass::ImportOnce::Importer < ::Sass::Importers::Filesystem
         real_file, syntax = Sass::Util.destructure(find_real_file(File.dirname(base), name, options))
         
         if !real_file
-            raise color(:red, "Could not find a RELATIVE file '#{name}'. Imported at #{options[:original_filename]}:#{options[:_line]}")
+            debug color(:red, "Could not find a RELATIVE file '#{name}'. Imported at #{options[:original_filename]}:#{options[:_line]}")
             return nil
         end
 
@@ -108,7 +95,7 @@ class Sass::ImportOnce::Importer < ::Sass::Importers::Filesystem
         real_file, syntax = Sass::Util.destructure(find_real_file(@root, name, options))
 
         if !real_file
-            raise color(:red, "Could not find file '#{name}'. Imported at #{options[:original_filename]}:#{options[:_line]}")
+            debug color(:red, "Could not find file '#{name}'. Imported at #{options[:original_filename]}:#{options[:_line]}")
             return nil
         end
         
@@ -136,6 +123,19 @@ class Sass::ImportOnce::Importer < ::Sass::Importers::Filesystem
     end
 
     protected
+    
+    # Same as Sass
+    COLORS = { :red => 31, :green => 32, :yellow => 33 }
+
+    def color(color, str)
+        raise "[BUG] Unrecognized color #{color}" unless COLORS[color]
+
+        # Almost any real Unix terminal will support color,
+        # so we just filter for Windows terms (which don't set TERM)
+        # and not-real terminals, which aren't ttys.
+        return str if ENV["TERM"].nil? || ENV["TERM"].empty? || !STDOUT.tty?
+        return "\e[#{COLORS[color]}m#{str}\e[0m"
+    end
 
     def empty(options)
         return Sass::Engine.new("", options)

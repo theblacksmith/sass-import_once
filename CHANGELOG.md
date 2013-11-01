@@ -1,3 +1,8 @@
+# 0.1.3
+
+Fixes bug which prevented other importers from being called
+Adds license
+
 # 0.1.2
 
 Adds require 'sass' to importer.rb
