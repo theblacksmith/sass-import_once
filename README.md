@@ -1,4 +1,6 @@
-# Sass Import Once Plugin
+# This project is deprecated. There is now an [official plugin](https://github.com/chriseppstein/compass/blob/master/import-once/README.md) and you should use it 
+
+## Sass Import Once Plugin
 
 Sass import_once changes the behavior of the sass @import directive making it never require the same file twice.
 
